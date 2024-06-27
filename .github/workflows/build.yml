@@ -18,7 +18,7 @@ jobs:
     - name: Validate build conditions
       run: |
         buildable_status=1
-        versions=("$vars.NIGHTLY_MASTER_VERSION" "$vars.NIGHTLY_STABLE_VERSION" "$vars.NIGHTLY_MAINT_VERSION" "$vars.STABLE_VERSION" "$vars.MAINT_VERSION")
+        versions=("$NIGHTLY_MASTER_VERSION" "$NIGHTLY_STABLE_VERSION" "$NIGHTLY_MAINT_VERSION" "$STABLE_VERSION" "$MAINT_VERSION")
         # We will proceed with the build only if the branch name is valid and supported by our repo-level vars.
         for version in "${versions[@]}"; do
           if [[ "$GITHUB_REF_NAME" == "$version" ]]; then
@@ -34,14 +34,14 @@ jobs:
       env:
         PLUG_IN_LIST: "monitor control-flow libjpeg-turbo"
       run: |
-        for version in $vars.NIGHTLY_MASTER_VERSION; do
+        for version in $NIGHTLY_MASTER_VERSION; do
           if [[ "$GITHUB_REF_NAME" == $version ]]; then
             PLUG_IN_VERSION="2.$(expr $MIDDLE_STABLE + 1)-SNAPSHOT"
             break
           fi
         done
         if [ -z $PLUG_IN_VERSION ]; then
-          for version in $vars.NIGHTLY_STABLE_VERSION; do
+          for version in $NIGHTLY_STABLE_VERSION; do
             if [[ "$GITHUB_REF_NAME" == $version ]]; then
               PLUG_IN_VERSION="2.$MIDDLE_STABLE-SNAPSHOT"
               break
@@ -49,7 +49,7 @@ jobs:
           done
         fi
         if [ -z $PLUG_IN_VERSION ]; then
-          for version in $vars.NIGHTLY_MAINT_VERSION; do
+          for version in $NIGHTLY_MAINT_VERSION; do
             if [[ "$GITHUB_REF_NAME" == $version ]]; then
               PLUG_IN_VERSION="2.$(expr $MIDDLE_STABLE - 1)-SNAPSHOT"
               break
