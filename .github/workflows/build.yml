@@ -25,12 +25,9 @@ jobs:
       run: |
         buildable_status=1
         versions=("$NIGHTLY_MASTER_VERSION" "$NIGHTLY_STABLE_VERSION" "$NIGHTLY_MAINT_VERSION" "$STABLE_VERSION" "$MAINT_VERSION")
-        echo "versions: ${versions[@]}"
-        echo "\$NIGHTLY_MASTER_VERSION is $NIGHTLY_MASTER_VERSION"
         # We will proceed with the build only if the branch name is valid and supported by our repo-level vars.
         for version in "${versions[@]}"; do
           if [[ "$GITHUB_REF_NAME" == "$version" ]]; then
-            echo "$GITHUB_REF_NAME, $version"
             # Valid version
             buildable_status=0
             break;
@@ -82,6 +79,8 @@ jobs:
 
     - uses: actions/checkout@v4
     - name: Build the geoserver image
+      env:
+        DOCKER_REPO: geosolutionsit/geoserver
       run: |
         WAR_FILE="https://build.geoserver.org/geoserver/$GITHUB_REF_NAME/geoserver-$GITHUB_REF_NAME-latest-war.zip"
         docker build \
