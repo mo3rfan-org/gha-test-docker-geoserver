@@ -74,7 +74,7 @@ jobs:
         mkdir -p ./resources/geoserver-plugins
         for PLUG_IN_NAME in $PLUG_IN_LIST; do
           URL="https://build.geoserver.org/geoserver/$GITHUB_REF_NAME/ext-latest/geoserver-$PLUG_IN_VERSION-$PLUG_IN_NAME-plugin.zip"
-          curl -k -o ./resources/geoserver-plugins/geoserver-$PLUG_IN_VERSION-$PLUG_IN_NAME-plugin.zip $URL
+          curl -C - -k -o ./resources/geoserver-plugins/geoserver-$PLUG_IN_VERSION-$PLUG_IN_NAME-plugin.zip $URL
         done
 
     - uses: actions/checkout@v4
