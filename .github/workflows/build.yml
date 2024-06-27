@@ -80,25 +80,25 @@ jobs:
           curl -C - -k -o ./resources/geoserver-plugins/geoserver-$PLUG_IN_VERSION-$PLUG_IN_NAME-plugin.zip $URL
         done
 
-    - uses: actions/checkout@v4
-    - name: Build the geoserver image
-      run: |
-        WAR_FILE="https://build.geoserver.org/geoserver/$GITHUB_REF_NAME/geoserver-$GITHUB_REF_NAME-latest-war.zip"
-        docker build \
-          --build-arg GEOSERVER_WEBAPP_SRC="$WAR_FILE" \
-          --build-arg PLUG_IN_PATHS="./resources/geoserver-plugins" \
-          -f "$DOCKERFILE_PATH" \
-          -t "${DOCKER_REPO}:$GITHUB_REF_NAME" .
-        rm -rf ./resources/geoserver-plugins/*
+    # - uses: actions/checkout@v4
+    # - name: Build the geoserver image
+    #   run: |
+    #     WAR_FILE="https://build.geoserver.org/geoserver/$GITHUB_REF_NAME/geoserver-$GITHUB_REF_NAME-latest-war.zip"
+    #     docker build \
+    #       --build-arg GEOSERVER_WEBAPP_SRC="$WAR_FILE" \
+    #       --build-arg PLUG_IN_PATHS="./resources/geoserver-plugins" \
+    #       -f "$DOCKERFILE_PATH" \
+    #       -t "${DOCKER_REPO}:$GITHUB_REF_NAME" .
+    #     rm -rf ./resources/geoserver-plugins/*
 
-    - name: Login to docker hub
-      uses: docker/login-action@v3.2.0
-      with:
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+    # - name: Login to docker hub
+    #   uses: docker/login-action@v3.2.0
+    #   with:
+    #     username: ${{ secrets.REGISTRY_USERNAME }}
+    #     password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - name: Push docker image
-      run: docker push "${DOCKER_REPO}:$GITHUB_REF_NAME"
+    # - name: Push docker image
+    #   run: docker push "${DOCKER_REPO}:$GITHUB_REF_NAME"
 
   test:
     runs-on: ubuntu-latest
