@@ -106,4 +106,4 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Run the tests
-        run: docker run --rm -it "${DOCKER_REPO}:$GITHUB_REF_NAME" /docker/tests/run_tests.sh
+        run: docker run --rm -i "${DOCKER_REPO}:$GITHUB_REF_NAME" /docker/tests/run_tests.sh
