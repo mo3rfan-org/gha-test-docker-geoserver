@@ -99,4 +99,11 @@ jobs:
 
     - name: Push docker image
       run: docker push "${DOCKER_REPO}:$GITHUB_REF_NAME"
-    
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build_image
+    timeout-minutes: 10
+    steps:
+      - name: Run the tests
+        run: docker run --rm -it "${DOCKER_REPO}:$GITHUB_REF_NAME" /docker/tests/run_tests.sh
