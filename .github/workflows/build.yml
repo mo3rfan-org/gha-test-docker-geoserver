@@ -18,9 +18,11 @@ jobs:
     - name: Validate build conditions
       run: |
         buildable_status=1
+        versions=("$vars.NIGHTLY_MASTER_VERSION" "$vars.NIGHTLY_STABLE_VERSION" "$vars.NIGHTLY_MAINT_VERSION" "$vars.STABLE_VERSION" "$vars.MAINT_VERSION")
         # We will proceed with the build only if the branch name is valid and supported by our repo-level vars.
-        for version in $vars.NIGHTLY_MASTER_VERSION $vars.NIGHTLY_STABLE_VERSION $vars.NIGHTLY_MAINT_VERSION $vars.STABLE_VERSION $vars.MAINT_VERSION; do
-          if [[ "$GITHUB_REF_NAME" == $version ]]; then
+        for version in "${versions[@]}"; do
+          if [[ "$GITHUB_REF_NAME" == "$version" ]]; then
+            echo "$GITHUB_REF_NAME, $version"
             # Valid version
             buildable_status=0
             break;
