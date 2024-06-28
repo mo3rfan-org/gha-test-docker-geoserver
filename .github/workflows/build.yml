@@ -31,7 +31,7 @@ jobs:
         # We will proceed with the build only if the branch name is valid and supported by our repo-level vars.
         for version in "${versions[@]}"; do
           for single_version in $version; do
-            if [[ "$GITHUB_REF_NAME" == "$version" ]]; then
+            if [[ "$GITHUB_REF_NAME" == "$single_version" ]]; then
               # Valid version
               buildable_status=0
               break;
