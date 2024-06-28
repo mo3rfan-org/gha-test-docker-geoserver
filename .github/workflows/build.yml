@@ -30,11 +30,13 @@ jobs:
         versions=("$NIGHTLY_MASTER_VERSION" "$NIGHTLY_STABLE_VERSION" "$NIGHTLY_MAINT_VERSION" "$STABLE_VERSION" "$MAINT_VERSION")
         # We will proceed with the build only if the branch name is valid and supported by our repo-level vars.
         for version in "${versions[@]}"; do
-          if [[ "$GITHUB_REF_NAME" == "$version" ]]; then
-            # Valid version
-            buildable_status=0
-            break;
-          fi
+          for single_version in $version; do
+            if [[ "$GITHUB_REF_NAME" == "$single_version" ]]; then
+              # Valid version
+              buildable_status=0
+              break;
+            fi
+          done
         done
         exit $buildable_status
 
