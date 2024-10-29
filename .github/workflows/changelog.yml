@@ -24,6 +24,9 @@ jobs:
               with:
                 script: |
                     core.setFailed('This workflow can not run on master branch')
+                
+            - name: Checkout code
+              uses: actions/checkout@v4
 
             - name: Generate changelog on release branch
               run: |
