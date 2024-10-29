@@ -32,10 +32,10 @@ jobs:
                 currentDate=$(date +'%Y-%m-%d')
                 changelogEntry=$(cat <<EOF
                 ## ${NEW_VERSION} (${currentDate})
-                **[Full changelog](https://github.com/geosolutions-it/docker-geoserver/compare/${LAST_VERSION}...${NEW_VERSION})**
-                **[Implemented enhancements](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Aenhancement)**
-                **[Fixed bugs](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Abug)**
-                **[Closed issues](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed)**
+                **[Full changelog](https://github.com/${{ github.repository }}/compare/${LAST_VERSION}...${NEW_VERSION})**
+                **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Aenhancement)**
+                **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Abug)**
+                **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed)**
                 EOF
                 )
                 # Prepend the new changelog to the changelog file
@@ -68,7 +68,7 @@ jobs:
             - name: github release
               uses: softprops/action-gh-release@v2
               with:
-                repository: geosolutions-it/docker-geoserver
+                repository: ${{ github.repository }}
                 # create a personal access token with permissions to create releases in the repo
                 token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
                 draft: true
@@ -86,11 +86,11 @@ jobs:
 
                     - ...
 
-                    ## Useful links related to **[${{ github.event.inputs.previous-version }}](https://github.com/geosolutions-it/docker-geoserver/tree/v${{ github.event.inputs.new-version }})**
-                    - **[Full Changelog](https://github.com/geosolutions-it/docker-geoserver/compare/v${{ github.event.inputs.previous-version }}...v${{ github.event.inputs.new-version }})**
-                    - **[Implemented enhancements](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Aenhancement)**
-                    - **[Fixed bugs](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Abug)**
-                    - **[Closed issues](https://github.com/geosolutions-it/docker-geoserver/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed)**
+                    ## Useful links related to **[${{ github.event.inputs.previous-version }}](https://github.com/${{ github.repository }}/tree/v${{ github.event.inputs.new-version }})**
+                    - **[Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ github.event.inputs.previous-version }}...v${{ github.event.inputs.new-version }})**
+                    - **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Aenhancement)**
+                    - **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Abug)**
+                    - **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed)**
                     - **[MapStore Extension release v${{ github.event.inputs.new-version }}](https://github.com/geosolutions-it/MapStoreExtension/releases/tag/v${{ github.event.inputs.new-version }})**
                     - **[Docker image v${{ github.event.inputs.new-version }}](xxx)** `< TODO: add this link manually`
                     - **[MapStore documentation v${{ github.event.inputs.new-version }}](https://docs.mapstore.geosolutionsgroup.com/en/v${{ github.event.inputs.new-version }}/)**
