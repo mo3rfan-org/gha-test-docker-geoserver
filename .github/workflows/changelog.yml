@@ -51,7 +51,7 @@ jobs:
 
                 git add CHANGELOG.md
                 git commit -m "Version Release ${NEW_VERSION}"
-                git tag v${NEW_VERSION} # create tag
+                git tag ${NEW_VERSION} # create tag
 
             - name: Push to protected branch
               uses: CasperWA/push-protected@v2
@@ -86,9 +86,9 @@ jobs:
 
                     - ...
 
-                    ## Useful links related to **[${{ github.event.inputs.previous-version }}](https://github.com/${{ github.repository }}/tree/v${{ github.event.inputs.new-version }})**
-                    - **[Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ github.event.inputs.previous-version }}...v${{ github.event.inputs.new-version }})**
+                    ## Useful links related to **[${{ github.event.inputs.previous-version }}](https://github.com/${{ github.repository }}/tree/${{ github.event.inputs.new-version }})**
+                    - **[Full Changelog](https://github.com/${{ github.repository }}/compare/${{ github.event.inputs.previous-version }}...${{ github.event.inputs.new-version }})**
                     - **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Aenhancement)**
                     - **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Abug)**
                     - **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed)**
-                    - **[Docker image v${{ github.event.inputs.new-version }}](xxx)** `< TODO: add this link manually`
+                    - **[Docker image ${{ github.event.inputs.new-version }}](xxx)** `< TODO: add this link manually`
