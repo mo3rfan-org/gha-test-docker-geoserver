@@ -9,6 +9,8 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
             - name: Build and run the compose file
               run: |
                 # Get the list of defined services in composefile
