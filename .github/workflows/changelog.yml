@@ -91,6 +91,4 @@ jobs:
                     - **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Aenhancement)**
                     - **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed+label%3Abug)**
                     - **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${{ github.event.inputs.new-version }}%22+is%3Aclosed)**
-                    - **[MapStore Extension release v${{ github.event.inputs.new-version }}](https://github.com/geosolutions-it/MapStoreExtension/releases/tag/v${{ github.event.inputs.new-version }})**
                     - **[Docker image v${{ github.event.inputs.new-version }}](xxx)** `< TODO: add this link manually`
-                    - **[MapStore documentation v${{ github.event.inputs.new-version }}](https://docs.mapstore.geosolutionsgroup.com/en/v${{ github.event.inputs.new-version }}/)**
