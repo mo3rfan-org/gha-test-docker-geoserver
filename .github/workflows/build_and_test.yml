@@ -3,7 +3,7 @@ name: Run docker compose
 on:
   push:
     branches:
-      - '[0-9]*' # Automatically run for commits on release branches (semver)
+      - '[0-9]*\.[0-9]*\.[0-9]*' # Automatically run for commits on release branches (semver)
 
 jobs:
     build:
