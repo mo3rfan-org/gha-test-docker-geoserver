@@ -1,4 +1,4 @@
-name: Generate changelog
+name: Generate changelog and create release
 
 on:
     # Meant to run once manually on the release branch
