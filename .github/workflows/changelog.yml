@@ -34,11 +34,12 @@ jobs:
                 # Get the current date in the format YYYY-MM-DD
                 currentDate=$(date +'%Y-%m-%d')
                 changelogEntry=$(cat <<EOF
-                ## ${NEW_VERSION} (${currentDate})
-                **[Full changelog](https://github.com/${{ github.repository }}/compare/${LAST_VERSION}...${NEW_VERSION})**
-                **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Aenhancement)**
-                **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Abug)**
-                **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed)**
+                ## [${NEW_VERSION}](https://github.com/${{ github.repository }}/tree/${NEW_VERSION}) (${currentDate})
+
+                - **[Full changelog](https://github.com/${{ github.repository }}/compare/${LAST_VERSION}...${NEW_VERSION})**
+                - **[Implemented enhancements](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Aenhancement)**
+                - **[Fixed bugs](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed+label%3Abug)**
+                - **[Closed issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A%22${NEW_VERSION}%22+is%3Aclosed)**
                 EOF
                 )
                 # Prepend the new changelog to the changelog file
